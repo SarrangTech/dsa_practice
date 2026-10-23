@@ -1,19 +1,19 @@
 class Solution:
     def maxOperations(self, nums: List[int], k: int) -> int:
-        #brute force
         i=0
         j=len(nums)-1
-        pairs=0
+        counter=0
         nums.sort()
         while(i<j):
             x=nums[i]+nums[j]
             if x==k:
-                pairs+=1
+                counter+=1
+                i+=1
                 j-=1
-                i+=1
-            elif x<k:
-                i+=1
             else:
-                j-=1
-        return pairs
-        
+                if x>k:
+                    j-=1
+                else:
+                    i+=1
+        return counter
+            
